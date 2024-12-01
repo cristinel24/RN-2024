@@ -14,8 +14,8 @@ class MLPModel(nn.Module, BaseModel):
         self.learning_rate = learning_rate
         self.epochs = epochs
 
-        self.in_function = nn.Linear(input_size, hidden_size)
-        self.out_function = nn.Linear(hidden_size, output_size)
+        self.in_layer = nn.Linear(input_size, hidden_size)
+        self.out_layer = nn.Linear(hidden_size, output_size)
 
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=1)
@@ -26,11 +26,11 @@ class MLPModel(nn.Module, BaseModel):
         self.train_data = super()._download_mnist(True)
         self.test_data = super()._download_mnist(False)
 
-    def forward(self, x):
-        x = x.view(-1, self.input_size)
-        x = self.relu(self.in_function(x))
-        x = self.out_function(x)
-        return x
+    def forward(self, data):
+        data = data.view(-1, self.input_size)
+        data = self.relu(self.in_layer(data))
+        data = self.out_layer(data)
+        return data
 
     def train_model(self):
         for epoch in range(self.epochs):
