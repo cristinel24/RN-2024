@@ -1,0 +1,10 @@
+numpy
+timed-decorator
+scikit-learn
+torch
+torchvision
+torchaudio
+numpy
+pandas
+matplotlib
+tqdm
